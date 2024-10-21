@@ -1,0 +1,31 @@
+<div class="card mb-4 product-card">
+  <img [src]="product.thumbnail" class="card-img-top">
+  
+  <div class="rating">
+    <i class="bi bi-star-fill" style="color: gold;"></i>
+    <i class="bi bi-star-fill" style="color: gold;"></i>
+    <i class="bi bi-star-fill" style="color: gold;"></i>
+    <i class="bi bi-star-fill" style="color: gold;"></i>
+    <i class="bi bi-star-half" style="color: gold;"></i>
+  </div>
+  
+  <div class="card-body">
+    <span [ngStyle]="{color: getColor(product.stock)}">{{ getState(product.stock) }}</span>
+    <h5 class="card-title">{{ product.description }}</h5>
+    <p class="card-text">Price: {{ product.price }}USD</p>
+    <p class="card-text">Category: {{ product.category }}</p>
+  </div>
+  
+  <div class="card-footer">
+    <button *ngIf="product.stock > 0" class="btn btn-primary"
+            (click)="addToCart()"
+            [ngClass]="{'btn-clicked': isClicked}"
+            style="background: linear-gradient(45deg, rgba(0,123,255,0.8), rgba(0,255,150,0.8)); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); height: 50px;">
+      Buy Now
+    </button>
+  </div>
+  <a (click)="selectProduct()"  [routerLink]="['/detail-product', product.id]"   style="color: blue;">
+    View Details
+  </a>
+
+</div>

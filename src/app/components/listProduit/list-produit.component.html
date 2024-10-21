@@ -1,0 +1,40 @@
+
+
+<div>
+  <section id="panier-items" class="">
+    <div class="container text-center mt-5 py-5">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.TZB7xx-eSpjQcjX3tfUYSwHaHa&pid=Api&P=0&h=180" style="height: 80px;">
+      <hr class="mx-auto">
+      <p><img src="https://tse1.mm.bing.net/th?id=OIP.RYwKPeMKqUiHa5B7emHvYQHaHa&pid=Api&P=0&h=180" style="height: 30px;">Browse products loved by our customers.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div *ngIf="filteredProducts.length > 0 ">
+      <div class="row justify-content-center">
+        <div class="col-md-3" *ngFor="let produit of filteredProducts">
+          <app-product-item 
+          [product]="produit"
+          (productSelected)="selectProduct(produit)"
+          
+          >"
+            >
+          </app-product-item>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedProduct" class="container mt-5">
+    <app-datail-product  [product]="selectedProduct" ></app-datail-product>
+    </div>
+    <div *ngIf="filteredProducts.length === 0 " class="container text-center mt-5 py-5">
+      <h4>
+        <img src="https://tse2.mm.bing.net/th?id=OIP.PkfFxW4TbXUp6Abm-lZKOwHaHa&pid=Api&P=0&h=180" style="height: 100px;">
+        No product found.
+      </h4>
+
+      </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+

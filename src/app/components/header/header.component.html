@@ -1,0 +1,70 @@
+<div *ngIf="showHeader" class="p-3 mb-2 fixed-top"
+     style="background: linear-gradient(45deg, rgba(0, 123, 255, 0.8), rgba(0, 255, 150, 0.8)); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); height: 100px;">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.tv04p4t35hQYkb1GXyRGggHaE7&pid=Api&P=0&h=180" style="height: 50px"/>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-white fw-bold" aria-current="page" routerLink="/"> 
+              <i class="bi bi-house"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/panier" class="nav-link text-white fw-bold"> 
+              <i class="bi bi-cart3"></i> Panel
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bold" routerLink="/mes-commandes"> 
+              <i class="bi bi-bag-check"></i> My orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bold" href="#"> 
+              <i class="bi bi-question-circle"></i> Help
+            </a>
+          </li>
+        </ul>
+
+        <form class="d-flex align-items-center" role="search">
+          <div class="form-group me-2">
+            <select class="form-select" (change)="onCategoryChange($event)">
+              <option value="All">All</option>
+              <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+          </div>
+          <div class="form-group me-2">
+            <input type="text" class="form-control search-input shadow-sm" placeholder="Search..." 
+                   (input)="onSearch($event)" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" />
+          </div>
+          <button class="btn btn-outline-light search-btn shadow-sm" type="submit">
+            Search
+          </button>
+        </form>
+
+        <div class="navbar-nav ms-2">
+          <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+            <a class="nav-link active text-white fw-bold" routerLink="/auth">
+              <i class="bi bi-person-fill"></i> Connection
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authService.isAuthenticated()">
+            <a class="nav-link active text-white fw-bold" (click)="onLogout()">
+              <i class="bi bi-box-arrow-right"></i> Disconnect
+            </a>
+          </li>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

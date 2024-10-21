@@ -1,0 +1,33 @@
+<div class="form-container d-flex justify-content-center align-items-center vh-100">
+  
+  <form [formGroup]="loginForm" class="p-4 shadow-sm rounded-3 bg-light" (ngSubmit)="onLogin()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Enter your email">
+      <div *ngIf="formControls['email'].invalid && (formControls['email'].dirty || formControls['email'].touched)" class="text-danger">
+        <small *ngIf="formControls['email'].errors?.['required']">Email is required.</small>
+        <small *ngIf="formControls['email'].errors?.['email']">Please enter a valid email address.</small>
+    </div>
+    
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Enter your password">
+      <div *ngIf="formControls['password'].invalid && (formControls['password'].dirty || formControls['password'].touched)" class="text-danger">
+        <small>Password is required.</small>
+    </div>
+    
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Remember me</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block w-100" [disabled]="loginForm.invalid" >LogIn</button>
+    <div class="form-text text-muted mt-3 text-center">
+      Don't have an account? <a routerLink="/register">Register</a>
+    </div>
+  </form>
+</div>

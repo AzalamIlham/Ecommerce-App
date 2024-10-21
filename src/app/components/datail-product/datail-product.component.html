@@ -1,0 +1,64 @@
+<section id="panier-items" class="text-center">
+  <div class="container mt-5 py-5">
+    <img src="https://tse4.mm.bing.net/th?id=OIP.TZB7xx-eSpjQcjX3tfUYSwHaHa&pid=Api&P=0&h=180" style="height: 80px;">
+    <hr class="mx-auto">
+    <p><img src="https://tse1.mm.bing.net/th?id=OIP.RYwKPeMKqUiHa5B7emHvYQHaHa&pid=Api&P=0&h=180" style="height: 30px;"> About this Product</p>
+  </div>
+</section>
+
+<div class="product-container d-flex justify-content-between align-items-start" style="margin-top: 10px;">
+  <div class="product-image" style="margin-left: 5%;">
+    <img [src]="product.thumbnail" alt="{{ product.description }}">
+  </div>
+  <div class="product-details"  style="margin-left: 5%;">
+    <h3>{{ product.description }}</h3>
+    <h4>{{ product.category }}</h4>
+    <p>{{ product.description }}</p>
+    <p><strong>{{ product.price }} USD</strong></p>
+    <p><strong>Stock:</strong> <span>{{ product.stock > 0 ? 'Available' : 'Out of stock' }}</span></p>
+  </div>
+  <div class="product-actions">
+    <button *ngIf="product.stock === 0" class="btn-disabled" disabled>Out of Stock</button>
+  </div>
+
+  
+
+</div>
+
+
+
+<div class="rating-section mt-4"  style="margin-left: 31%;">
+  <h5>Rate this product:</h5>
+  <div class="star-rating">
+    <span class="star" 
+          *ngFor="let star of [1, 2, 3, 4, 5,6,7,8,9,10]" 
+          [ngClass]="{ 'active': star <= selectedRating }" 
+          (click)="rateProduct(star)">
+      &#9733;
+    </span>
+  </div>
+</div>
+
+
+
+
+
+<div class="comment-section mt-4" style="margin-left: 31%; margin-bottom: 10%;">
+  <h5>Leave a comment:</h5>
+  <textarea class="form-control" rows="5" placeholder="Write your comment here..."  [(ngModel)]="newComment"></textarea>
+  <button class="btn btn-primary mt-3" style="background: linear-gradient(45deg, rgba(0,123,255,0.8), rgba(0,255,150,0.8)); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); height: 50px;" (click)="submitComment1()" >Submit</button>
+</div>
+
+
+
+<div *ngIf="comments.length > 0" class="comment-list" style="margin-left: 22%; margin-bottom: 10%;">
+  <h5>Comments:</h5>
+  <div *ngFor="let comment of comments; let i = index" class="comment-item">
+    <p>{{ comment.commentaire }}</p>
+    <button class="btn btn-danger" (click)="deleteComment(i)">Delete</button>
+  </div>
+</div>
+
+
+ 
+

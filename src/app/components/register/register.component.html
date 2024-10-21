@@ -1,0 +1,50 @@
+<div class="form-container d-flex justify-content-center align-items-center vh-100">
+  <form [formGroup]="registerForm" class="p-4 shadow-sm rounded-3 bg-light" (ngSubmit)="onRegister()">
+    <h3 class="text-center mb-4">Register</h3>
+
+    <div class="mb-3">
+      <label for="exampleFullName" class="form-label fw-bold">Full Name</label>
+      <input type="text" class="form-control" id="exampleFullName" formControlName="fullName" placeholder="Enter your full name">
+      <div *ngIf="formControls['fullName'].invalid && (formControls['fullName'].dirty || formControls['fullName'].touched)" class="text-danger">
+        <small>Full name is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Enter your email">
+      <div *ngIf="formControls['email'].invalid && (formControls['email'].dirty || formControls['email'].touched)" class="text-danger">
+        <small *ngIf="formControls['email'].errors?.['required']">Email is required.</small>
+        <small *ngIf="formControls['email'].errors?.['email']">Please enter a valid email address.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Enter your password">
+      <div *ngIf="formControls['password'].invalid && (formControls['password'].dirty || formControls['password'].touched)" class="text-danger">
+        <small>Password is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleConfirmPassword1" class="form-label fw-bold">Confirm Password</label>
+      <input type="password" class="form-control" id="exampleConfirmPassword1" formControlName="confirmPassword" placeholder="Confirm your password">
+      <div *ngIf="formControls['confirmPassword'].invalid && (formControls['confirmPassword'].dirty || formControls['confirmPassword'].touched)" class="text-danger">
+        <small>Confirm password is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="termsCheck" formControlName="terms">
+      <label class="form-check-label" for="termsCheck">I agree to the terms and conditions</label>
+      <div *ngIf="formControls['terms'].invalid && (formControls['terms'].dirty || formControls['terms'].touched)" class="text-danger">
+        <small>You must agree to the terms and conditions.</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block w-100" [disabled]="registerForm.invalid">Register</button>
+    <div class="form-text text-muted mt-3 text-center">
+      Already have an account? <a routerLink="/auth">Log In</a>
+    </div>
+  </form>
+</div>

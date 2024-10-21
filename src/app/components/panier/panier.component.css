@@ -1,0 +1,31 @@
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-img-top {
+  border-radius: 5px;
+}
+
+.btn-danger {
+  background: linear-gradient(( rgba(0,123,255,0.8), rgba(0,255,150,0.8)));
+  color: #fff;
+  border: none;
+}
+
+.btn-primary, .btn-success {
+  background: linear-gradient(45deg, rgba(0,123,255,0.8), rgba(0,255,150,0.8));
+  color: #fff;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+hr {
+  border-top: 1px solid #eee;
+}

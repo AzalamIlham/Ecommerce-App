@@ -1,0 +1,20 @@
+
+<div style="margin-top: 50px;">
+    <section id="panier-items" class="">
+      <div class="container text-center mt-5 py-5">
+        <img src="https://tse4.mm.bing.net/th?id=OIP.TZB7xx-eSpjQcjX3tfUYSwHaHa&pid=Api&P=0&h=180" style="height: 80px;">
+        <hr class="mx-auto">
+        <p><img src="https://tse1.mm.bing.net/th?id=OIP.RYwKPeMKqUiHa5B7emHvYQHaHa&pid=Api&P=0&h=180" style="height: 30px;">Browse products loved by our customers.</p>
+      </div>
+    </section>
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+  
+      <div class="col-md-3 mb-4 border-black shadow-sm" *ngFor="let p of products">
+        <app-product-item [product]="p"></app-product-item>
+        
+      </div>
+    </div>
+  </div>
+  

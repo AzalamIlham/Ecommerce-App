@@ -27,7 +27,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -79,11 +79,14 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+    "src/assets",
+    "src/favicon.ico",
+    {
+        "glob": "**/*",
+        "input": "src/assets",
+        "output": "/assets"
+    }
+],
             "styles": [
               "src/styles.css"
             ],
@@ -92,5 +95,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "2564c668-aa9c-4586-92d5-8b566a207639"
   }
 }
