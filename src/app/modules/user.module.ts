@@ -1,18 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+export class UserModule { 
+  id ! : number;
+  email !:String ;
+  password !:String;
+  username !:String;
 
+  constructor(id :number,email :String , password :String, username :String ){
+        this.id =id;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+  } 
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-export class UserModule {
-
-  email :String ='';
-  passeword :String ='';
-
-
- }
+}

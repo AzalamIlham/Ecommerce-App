@@ -42,20 +42,22 @@
 
 
 
-
-<div class="comment-section mt-4" style="margin-left: 31%; margin-bottom: 10%;">
-  <h5>Leave a comment:</h5>
-  <textarea class="form-control" rows="5" placeholder="Write your comment here..."  [(ngModel)]="newComment"></textarea>
-  <button class="btn btn-primary mt-3" style="background: linear-gradient(45deg, rgba(0,123,255,0.8), rgba(0,255,150,0.8)); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); height: 50px;" (click)="submitComment1()" >Submit</button>
+<div class="comment-section mt-4">
+  <h5>Leave a Comment:</h5>
+  <textarea class="form-control comment-input" rows="5" placeholder="Write your comment here..." [(ngModel)]="newComment"></textarea>
+  <button class="btn btn-primary mt-3 submit-button" (click)="submitComment1()">Submit</button>
 </div>
 
-
-
-<div *ngIf="comments.length > 0" class="comment-list" style="margin-left: 22%; margin-bottom: 10%;">
+<div *ngIf="comments.length > 0" class="comment-list mt-4">
   <h5>Comments:</h5>
-  <div *ngFor="let comment of comments; let i = index" class="comment-item">
-    <p>{{ comment.commentaire }}</p>
-    <button class="btn btn-danger" (click)="deleteComment(i)">Delete</button>
+  <div *ngFor="let comment of comments; let i = index" class="comment-item d-flex align-items-start mb-3">
+    <div class="comment-avatar">
+      <img src="https://tse2.mm.bing.net/th?id=OIP.dHYGk2RscB7-3tATNN7jVwHaHa&pid=Api&P=0&h=180" alt="User Avatar">
+    </div>
+    <div class="comment-content">
+      <p class="comment-text">{{ comment.commentaire }}</p>
+      <button class="btn btn-sm btn-danger delete-button" (click)="deleteComment(i)">Delete</button>
+    </div>
   </div>
 </div>
 

@@ -48,17 +48,17 @@ export class DatailProductComponent {
     }
   }
 
-  submitComment(): void {
-    if (this.isUserLoggedIn()) {
-      if (this.comment.commentaire.trim()) {
-        this.comment.commentaire = ''; 
-      } else {
-        console.log('Comment field is empty.');
-      }
-    } else {
-      alert('You must be logged in to submit a comment.');
-    }
-  }
+  // submitComment(): void {
+  //   if (this.isUserLoggedIn()) {
+  //     if (this.comment.commentaire.trim()) {
+  //       this.comment.commentaire = ''; 
+  //     } else {
+  //       console.log('Comment field is empty.');
+  //     }
+  //   } else {
+  //     alert('You must be logged in to submit a comment.');
+  //   }
+  // }
 
   submitComment1(): void {
     if (this.isUserLoggedIn()) {

@@ -8,16 +8,13 @@
         <small *ngIf="formControls['email'].errors?.['required']">Email is required.</small>
         <small *ngIf="formControls['email'].errors?.['email']">Please enter a valid email address.</small>
     </div>
-    
     </div>
-
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
       <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Enter your password">
       <div *ngIf="formControls['password'].invalid && (formControls['password'].dirty || formControls['password'].touched)" class="text-danger">
         <small>Password is required.</small>
     </div>
-    
     </div>
 
     <div class="mb-3 form-check">

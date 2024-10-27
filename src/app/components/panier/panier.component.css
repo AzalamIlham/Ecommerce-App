@@ -1,27 +1,43 @@
+.orders-section {
+  background-color: #f9f9f9;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+}
+
+.card {
+  flex-direction: row;
+  border-radius: 5px;
+}
+
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.card-img-top {
-  border-radius: 5px;
+.card-img-left {
+  border-radius: 5px 0 0 5px;
+}
+
+.cart-summary {
+  max-width: 320px;
+  margin-top: 20px;
 }
 
 .btn-danger {
-  background: linear-gradient(( rgba(0,123,255,0.8), rgba(0,255,150,0.8)));
+  background: linear-gradient(45deg, #ff4a4a, #ff9a9a);
   color: #fff;
   border: none;
 }
 
 .btn-primary, .btn-success {
-  background: linear-gradient(45deg, rgba(0,123,255,0.8), rgba(0,255,150,0.8));
+  background: linear-gradient(45deg, #007bff, #00ff96);
   color: #fff;
 }
 
 .btn-outline-secondary {
   background-color: transparent;
-  color: #000;
+  color: #555;
   border: 1px solid #ddd;
   border-radius: 5px;
 }

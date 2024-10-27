@@ -1,8 +1,10 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { ProductService } from './sevices/product.service';
-import {  provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 const firebaseConfig = {
@@ -16,8 +18,12 @@ const firebaseConfig = {
 };
 
 
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),ProductService,provideHttpClient()]
-};
 
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient(),
+  importProvidersFrom(AngularFireModule.initializeApp(firebaseConfig)),
+  importProvidersFrom(AngularFireAuth),
+  importProvidersFrom(AngularFireAuthModule)]
 
+}
