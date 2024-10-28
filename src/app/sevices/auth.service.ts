@@ -8,6 +8,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+
+  getToken() {
+    throw new Error('Method not implemented.');
+  }
+  
   isLoggedIn : boolean= localStorage.getItem("auth")=="true";
   isAuthBehav = new BehaviorSubject<boolean>(this.isLoggedIn);
   isAuthObserv = this.isAuthBehav.asObservable();

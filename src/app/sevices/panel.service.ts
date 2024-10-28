@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LignePanier } from '../modules/LignePanier';
 import { Product } from '../modules/Product';
 import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,10 @@ export class PanelService {
   private productCartSubject = new BehaviorSubject<LignePanier[]>([]);
   private detailProduit: LignePanier[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.loadPanier(); 
+    this.productCartSubject.next(this.detailProduit); 
+  }
 
   getAllCartProducts() {
     return this.productCartSubject.asObservable(); 
@@ -31,30 +35,44 @@ export class PanelService {
       this.detailProduit.push(newLignePanier); 
     }
     this.productCartSubject.next(this.detailProduit); 
-    console.log(this.detailProduit);
+    this.enregistrerPanier();
+  }
+
+  loadPanier() {
+    let data = localStorage.getItem("cart");
+    if (data) {
+      this.detailProduit = JSON.parse(data);
+    }
+  }
+
+  enregistrerPanier() {
+    localStorage.setItem("cart", JSON.stringify(this.detailProduit));
   }
 
   incrementQuantity(produit: Product) {
     const itemFound = this.detailProduit.find(item => item.produit.id === produit.id);
     if (itemFound) {
-      itemFound.qte++; // Incrémenter la quantité
-      this.productCartSubject.next(this.detailProduit); // Mettre à jour l'observable
+      itemFound.qte++; 
+      this.productCartSubject.next(this.detailProduit);
+      this.enregistrerPanier(); 
     }
   }
 
   decrementQuantity(produit: Product) {
     const itemFound = this.detailProduit.find(item => item.produit.id === produit.id);
     if (itemFound && itemFound.qte > 0) {
-      itemFound.qte--; // Décrémenter la quantité
+      itemFound.qte--; 
       if (itemFound.qte === 0) {
-        this.removeItem(produit); // Retirer le produit si la quantité est 0
+        this.removeItem(produit); 
       }
-      this.productCartSubject.next(this.detailProduit); // Mettre à jour l'observable
+      this.productCartSubject.next(this.detailProduit);
+      this.enregistrerPanier(); 
     }
   }
 
   removeItem(produit: Product) {
     this.detailProduit = this.detailProduit.filter(item => item.produit.id !== produit.id);
-    this.productCartSubject.next(this.detailProduit); // Mettre à jour l'observable
+    this.productCartSubject.next(this.detailProduit); 
+    this.enregistrerPanier(); 
   }
 }
