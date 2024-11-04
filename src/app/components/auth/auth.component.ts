@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 export class AuthComponent {
 
   loginForm: FormGroup;
+
   email: string = '';
   password: string = '';
   token!: string;
@@ -48,6 +49,10 @@ export class AuthComponent {
         localStorage.setItem("accessToken", value.user.multiFactor.user.accessToken);
         localStorage.setItem("auth", "true");
         this.authService.isAuthBehav.next(true);
+        console.log(`userid : ${value.user.uid}`);
+        localStorage.setItem("userid",value.user.uid);
+        this.authService.UserId=value.user.uid;
+
       },
       (error: any) => {
         console.log("Erreur détectée :", error.message);

@@ -6,7 +6,9 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthInterceptorService } from './sevices/auth-interceptor.service';
-
+import { Firestore, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCiAjtOD8_CA4yZRvb86oLcEW6VbJDQa40",
@@ -18,16 +20,22 @@ const firebaseConfig = {
   measurementId: "G-N96JF6GYGH"
 };
 
-
-
 export const appConfig: ApplicationConfig = {
 
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
-    provideHttpClient(),
+  provideRouter(routes), 
+  provideHttpClient(),
   importProvidersFrom(AngularFireModule.initializeApp(firebaseConfig)),
   importProvidersFrom(AngularFireAuth),
   importProvidersFrom(AngularFireAuthModule),
+  importProvidersFrom(Firestore),
+  provideFirestore(() => getFirestore()),
+  provideFirebaseApp(()=> initializeApp(firebaseConfig)),
+
+  provideFirestore(() => getFirestore()),
+
+
+
   {provide :HTTP_INTERCEPTORS,
   useClass : AuthInterceptorService ,
   multi :true}

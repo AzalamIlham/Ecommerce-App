@@ -4,8 +4,6 @@ import { Product } from '../modules/Product';
 import { map, Observable } from 'rxjs';
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -43,4 +41,6 @@ export class ProductService {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);
   }
 
+
+  
 }

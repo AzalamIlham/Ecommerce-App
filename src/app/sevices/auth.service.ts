@@ -12,6 +12,7 @@ export class AuthService {
   getToken() {
     throw new Error('Method not implemented.');
   }
+  UserId:any=localStorage.getItem("userid");
   
   isLoggedIn : boolean= localStorage.getItem("auth")=="true";
   isAuthBehav = new BehaviorSubject<boolean>(this.isLoggedIn);
