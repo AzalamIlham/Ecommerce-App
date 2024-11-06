@@ -12,11 +12,15 @@ export class ProductService {
 
   private baseUrl = 'https://dummyjson.com/products';
 
+
   constructor(private http: HttpClient) { }
 
   getProducts(){
     return this.http.get('https://dummyjson.com/products')
   }
+
+
+  
 
   getAllCategories() {
     return this.http.get<any[]>('https://dummyjson.com/products/category-list');
@@ -39,6 +43,10 @@ export class ProductService {
 
   public getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);
+  }
+
+  getComments(productId: String): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`https://dummyjson.com/comments/${productId}`);
   }
 
 

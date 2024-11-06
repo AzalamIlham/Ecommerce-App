@@ -1,12 +1,36 @@
 <section id="panier-items" class="orders-section">
   <div class="container text-center mt-5 py-5">
-    <img src="https://tse4.mm.bing.net/th?id=OIP.TZB7xx-eSpjQcjX3tfUYSwHaHa&pid=Api&P=0&h=180" style="height: 140px;" alt="Cart Icon">    <hr class="mx-auto">
-    <h2 class="mt-3">My Orders</h2>
-    <p class="order-welcome">
-      <img src="https://tse1.mm.bing.net/th?id=OIP.RYwKPeMKqUiHa5B7emHvYQHaHa&pid=Api&P=0&h=180" style="height: 30px;" alt="Welcome Icon">
-      Welcome to your orders. Here is a summary of all your recent purchases.
-    </p>
+    <div class="cart-header">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.TZB7xx-eSpjQcjX3tfUYSwHaHa&pid=Api&P=0&h=180" class="cart-icon" alt="Cart Icon">
+      <hr class="divider mx-auto">
+      <h2 class="orders-title">My Orders</h2>
+      <p class="order-welcome">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.RYwKPeMKqUiHa5B7emHvYQHaHa&pid=Api&P=0&h=180" class="welcome-icon" alt="Welcome Icon">
+        Welcome to your orders. Here is a summary of all your recent purchases.
+      </p>
+    </div>
 
+    <div *ngIf="commandes.length > 0; else noOrders">
+      <ul class="order-list">
+        <li *ngFor="let commande of commandes" class="order-item">
+          <strong>Order ID:</strong> {{ commande.id }} <br>
+          <strong>Amount:</strong> {{ commande.montant }} MAD <br>
+          <strong>Date:</strong> {{ convertTimestampToDate(commande.dateCommande) | date:'short' }}<br>
+          <strong>Details:</strong>
+          <ul class="product-list">
+            <li *ngFor="let produit of commande.details" class="product-item">
+              - {{ produit.description }} ({{ produit.quantite }} pcs)
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
 
+    <ng-template #noOrders>
+      <div class="no-orders">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.Qz8fnVfb4edWZJ4XXliD_gHaHa&pid=Api&P=0&h=180" class="no-orders-icon" alt="No Orders Icon">
+        <p>No orders found.</p>
+      </div>
+    </ng-template>
   </div>
 </section>

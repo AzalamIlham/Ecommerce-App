@@ -70,3 +70,87 @@
     cursor: pointer;
   }
   
+
+  /* General Container Styling */
+.orders-section {
+  background-color: #f9f9f9;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Header Styling */
+.cart-icon {
+  height: 140px;
+  margin-bottom: 15px;
+}
+
+.orders-title {
+  font-size: 2rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+.order-welcome {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 20px 0;
+}
+
+.welcome-icon {
+  height: 30px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.divider {
+  width: 60px;
+  border: 2px solid #23cec5;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.order-item {
+  background-color: #69dfd9;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+
+
+.product-list {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.product-item {
+  color: #000000;
+  font-size: 1rem;
+}
+
+.no-orders {
+  text-align: center;
+  margin-top: 30px;
+  color: #888;
+}
+
+.no-orders-icon {
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.no-orders p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+
+  

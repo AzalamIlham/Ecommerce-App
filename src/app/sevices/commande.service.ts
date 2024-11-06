@@ -8,8 +8,11 @@ import { Firestore,
   doc,
   updateDoc,
   getDoc,
-  deleteDoc
+  deleteDoc,
+  query,
+  where
   } from '@angular/fire/firestore';
+import { AuthService } from './auth.service';
   
 
 @Injectable({
@@ -17,7 +20,7 @@ import { Firestore,
 })
 export class CommandeService {
 
-  constructor(private fireStore:Firestore){
+  constructor(private fireStore:Firestore,private authService :AuthService){
   }
   private commandes: CommandeModule[] = [];
 
@@ -27,15 +30,37 @@ export class CommandeService {
   }
 
 
-   addCommande(userId :string, details: Array<LignePanier>, montant: number){
-    const commandeData : any ={userId:userId,montant:montant,dateCommande:new Date(),details:details}
-    const collectionInstance= collection(this.fireStore,'orders')
-    addDoc(collectionInstance,commandeData).then(()=>console.log("data created",commandeData)).catch(error =>console.log(error))
+  getUserOrders() {
+    const userId = this.authService.UserId; 
+    const collectionInstance = collection(this.fireStore, 'orders');
+    const userOrdersQuery = query(collectionInstance, where('userId', '==', userId));
+    return collectionData(userOrdersQuery, { idField: 'id' });
   }
 
+
+
+  addCommande(userId: string, details: Array<LignePanier>, montant: number) {
+    const produitDetails = details.map(item => ({
+      produitId: item.produit.id,        
+      description: item.produit.description, 
+      quantite: item.qte  
+    }));
+  
+    const commandeData: any = {
+      userId: userId,
+      montant: montant,
+      dateCommande: new Date(),
+      details: produitDetails, 
+    };
+  
+    const collectionInstance = collection(this.fireStore, 'orders');
+    addDoc(collectionInstance, commandeData)
+      .then(() => console.log("Commande créée avec succès", commandeData))
+      .catch(error => console.log("Erreur lors de la création de la commande", error));
+  }
+  
   getAllOrders(){
     const collectionInstance = collection(this.fireStore,'orders')
-
    return  collectionData(collectionInstance, {idField : 'id'})
 
   }
@@ -46,7 +71,6 @@ export class CommandeService {
     const docinstance = doc(this.fireStore,'orders',id)
 
     return getDoc(docinstance)
-
 
   }
 
